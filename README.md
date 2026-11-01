@@ -4,11 +4,11 @@ A local-first system architecture studio for designing, analyzing, and simulatin
 
 ## MVP foundation
 - React 18 + TypeScript + Vite application scaffold
-- Data-driven component registry with 20 architecture components
+- Data-driven component registry with 22 architecture component variants
 - Searchable palette with drag-and-drop and click-to-add
 - Interactive React Flow canvas, directed connections, minimap, zoom, and pan
 - Node and edge properties inspector
-- Zustand local persistence and zundo undo/redo history (50 states)
+- Zustand local persistence with 500 ms debounced writes, page-exit flush, quota/error recovery warning, and zundo undo/redo history (50 states)
 - Capacity estimation: average/peak QPS, read/write QPS, annual storage, bandwidth
 - Architecture checks: overload, possible SPOF, disconnected nodes, missing load balancer
 - JSON import/export, full-canvas PNG/SVG exports, Markdown architecture reports, six system design templates, and request-flow simulation
@@ -29,7 +29,8 @@ npm run build
 ## Architecture
 - `src/App.tsx`: application shell, palette, canvas, inspector, import/export
 - `src/domain.ts`: component registry, graph types, capacity and validation services
-- `src/store.ts`: graph state, persistence, and undo/redo
+- `src/store.ts`: graph state, persistence integration, and undo/redo
+- `src/persistence.ts`: debounced localStorage adapter and recovery hooks
 - `src/export.ts`: Markdown architecture report generation
 - `src/simulation.ts`: deterministic request-path tracing and latency calculation
 - `src/styles.css`: responsive visual system and themes
