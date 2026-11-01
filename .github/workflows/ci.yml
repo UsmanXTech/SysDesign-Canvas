@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, "feat/**", "fix/**", "test/**"]
   pull_request:
-    branches: [main, "feat/**"]
+    branches: [main, "feat/**", "fix/**"]
 jobs:
   quality:
     runs-on: ubuntu-latest
@@ -13,6 +13,7 @@ jobs:
         with:
           node-version: 22
       - run: npm install
+      - run: npm audit --audit-level=high
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
