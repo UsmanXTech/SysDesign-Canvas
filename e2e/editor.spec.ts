@@ -2,5 +2,5 @@ import {test,expect} from '@playwright/test';
 test.beforeEach(async({page})=>{await page.goto('/');await page.evaluate(()=>localStorage.clear());await page.reload()});
 const addComponent=async(page:any,label:string)=>{await page.locator('.component').filter({hasText:label}).click();await expect(page.locator('.react-flow__node').filter({hasText:label})).toHaveCount(1)};
 test('adds a component and restores it after refresh',async({page})=>{await addComponent(page,'Web Client');await page.waitForTimeout(650);await page.reload();await expect(page.locator('.react-flow__node').filter({hasText:'Web Client'})).toHaveCount(1)});
-test('undo removes a newly added component',async({page})=>{await addComponent(page,'Web Client');await page.locator('body').press('Control+z');await expect(page.locator('.react-flow__node')).toHaveCount(0)});
+test('undo removes a newly added component',async({page})=>{await addComponent(page,'Web Client');await page.getByTitle('Undo').click();await expect(page.locator('.react-flow__node')).toHaveCount(0)});
 test('duplicates a selected component with the keyboard',async({page})=>{await addComponent(page,'Web Client');await page.keyboard.press('Control+c');await page.keyboard.press('Control+v');await expect(page.locator('.react-flow__node').filter({hasText:'Web Client'})).toHaveCount(2)});
