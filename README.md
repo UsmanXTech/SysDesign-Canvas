@@ -11,7 +11,7 @@ A local-first system architecture studio for designing, analyzing, and simulatin
 - Zustand local persistence and zundo undo/redo history (50 states)
 - Capacity estimation: average/peak QPS, read/write QPS, annual storage, bandwidth
 - Architecture checks: overload, possible SPOF, disconnected nodes, missing load balancer
-- JSON import/export and URL Shortener / Rate Limiter templates
+- JSON import/export, full-canvas PNG/SVG exports, Markdown architecture reports, and six system design templates
 - Light/dark theme and architecture notes
 
 ## Stack
@@ -30,6 +30,7 @@ npm run build
 - `src/App.tsx`: application shell, palette, canvas, inspector, import/export
 - `src/domain.ts`: component registry, graph types, capacity and validation services
 - `src/store.ts`: graph state, persistence, and undo/redo
+- `src/export.ts`: Markdown architecture report generation
 - `src/styles.css`: responsive visual system and themes
 
 ## Delivery workflow
