@@ -12,7 +12,7 @@ A local-first system architecture studio for designing, analyzing, and simulatin
 - Capacity estimation: average/peak QPS, read/write QPS, annual storage, bandwidth
 - Architecture checks: overload, possible SPOF, disconnected nodes, missing load balancer
 - JSON import/export, full-canvas PNG/SVG exports, Markdown architecture reports, six system design templates, and request-flow simulation
-- Light/dark theme and architecture notes
+- Light/dark theme, responsive read-only mode below 1024 × 600, error boundary, and architecture notes
 
 ## Stack
 React 18 · TypeScript · Vite · @xyflow/react · Zustand · zundo · Tailwind CSS · Zod · Vitest
@@ -31,6 +31,7 @@ npm run build
 - `src/domain.ts`: component registry, graph types, capacity and validation services
 - `src/store.ts`: graph state, persistence integration, and undo/redo
 - `src/persistence.ts`: debounced localStorage adapter and recovery hooks
+- `src/ErrorBoundary.tsx`: application-level rendering error recovery
 - `src/export.ts`: Markdown architecture report generation
 - `src/simulation.ts`: deterministic request-path tracing and latency calculation
 - `src/styles.css`: responsive visual system and themes
