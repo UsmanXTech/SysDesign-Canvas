@@ -73,3 +73,17 @@ test('switches to read-only mode on a narrow viewport',async({page})=>{
   await expect(page.locator('.palette')).toBeHidden();
   await expect(page.locator('.inspector')).toBeHidden();
 });
+
+test('renders the ErrorBoundary fallback after a child render failure',async({page})=>{
+  await page.evaluate(async()=>{
+    const React=(await import('react')).default;
+    const {createRoot}=await import('react-dom/client');
+    const {default:ErrorBoundary}=await import('/src/ErrorBoundary.tsx');
+    function CrashProbe(){throw new Error('e2e boundary probe')}
+    const host=document.createElement('div');
+    document.body.append(host);
+    createRoot(host).render(React.createElement(ErrorBoundary,null,React.createElement(CrashProbe)));
+  });
+  await expect(page.locator('[role="alert"]').last()).toContainText('The editor encountered an error');
+  await expect(page.locator('[role="alert"]').last()).toContainText('e2e boundary probe');
+});
