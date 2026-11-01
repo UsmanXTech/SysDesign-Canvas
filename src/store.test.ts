@@ -1,0 +1,2 @@
+import {afterEach,describe,it,expect} from 'vitest';import {useStore} from './store';
+describe('graph history',()=>{afterEach(()=>{useStore.getState().clear();useStore.temporal.getState().clear()});it('undoes node creation even after the canvas selects the new node',()=>{useStore.temporal.getState().clear();useStore.getState().addNode('webClient',{x:10,y:20});expect(useStore.getState().nodes).toHaveLength(1);useStore.setState(s=>({nodes:s.nodes.map(n=>({...n,selected:true}))}));useStore.temporal.getState().undo();expect(useStore.getState().nodes).toHaveLength(0)})});
