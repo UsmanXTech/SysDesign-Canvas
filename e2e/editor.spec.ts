@@ -58,13 +58,13 @@ test('exports PNG and SVG from the browser',async({page})=>{
   const pngPromise=page.waitForEvent('download');
   await page.locator('.export-menu button').filter({hasText:'PNG'}).click();
   const png=await pngPromise;
-  expect(png.suggestedFilename()).toMatch(/\\.png$/i);
+  expect(png.suggestedFilename()).toMatch(/\.png$/i);
 
   await page.locator('.export-wrap > button').click();
   const svgPromise=page.waitForEvent('download');
   await page.locator('.export-menu button').filter({hasText:'SVG'}).click();
   const svg=await svgPromise;
-  expect(svg.suggestedFilename()).toMatch(/\\.svg$/i);
+  expect(svg.suggestedFilename()).toMatch(/\.svg$/i);
 });
 
 test('switches to read-only mode on a narrow viewport',async({page})=>{
