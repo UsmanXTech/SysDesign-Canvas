@@ -1,20 +1,42 @@
 # SysDesign Canvas
 
-A browser-based system design visualizer for building, analyzing, and simulating software architectures.
+A local-first system architecture studio for designing, analyzing, and simulating scalable software systems.
 
-## Status
+## MVP foundation
+- React 18 + TypeScript + Vite application scaffold
+- Data-driven component registry with 20 architecture components
+- Searchable palette with drag-and-drop and click-to-add
+- Interactive React Flow canvas, directed connections, minimap, zoom, and pan
+- Node and edge properties inspector
+- Zustand local persistence and zundo undo/redo history (50 states)
+- Capacity estimation: average/peak QPS, read/write QPS, annual storage, bandwidth
+- Architecture checks: overload, possible SPOF, disconnected nodes, missing load balancer
+- JSON import/export and URL Shortener / Rate Limiter templates
+- Light/dark theme and architecture notes
 
-Project scaffold is being initialized from the approved functional requirements, non-functional requirements, system architecture, and UX design documents.
+## Stack
+React 18 · TypeScript · Vite · @xyflow/react · Zustand · zundo · Tailwind CSS · Zod · Vitest
 
-## Planned stack
+## Local development
+```bash
+npm install
+npm run dev
+npm run typecheck
+npm test
+npm run build
+```
 
-- React 18 + TypeScript + Vite
-- `@xyflow/react` for the architecture canvas
-- Zustand + zundo for state and undo/redo
-- Tailwind CSS for styling
-- Zod for design import validation
-- Vitest, React Testing Library, and Playwright for testing
+## Architecture
+- `src/App.tsx`: application shell, palette, canvas, inspector, import/export
+- `src/domain.ts`: component registry, graph types, capacity and validation services
+- `src/store.ts`: graph state, persistence, and undo/redo
+- `src/styles.css`: responsive visual system and themes
 
-## Development
+## Delivery workflow
+- `main`: stable integration branch
+- `feat/*`: feature development
+- `fix/*`: isolated bug fixes
+- `test/*`: test and quality improvements
+- Each milestone is delivered through a pull request with acceptance criteria and verification notes.
 
-Implementation is organized into feature branches and pull requests. The initial milestone is the MVP: component palette, graph canvas, connections, inspector, local persistence, and JSON import/export.
+Version 1 is a static frontend. Designs remain in browser storage by default; there is no account backend or real infrastructure deployment. Capacity defaults are configurable planning estimates, not vendor performance guarantees.
